@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 """
-BaseModle Module
+base_module Module has:
+    BaseModel Class;
+
 """
 
 from datetime import datetime
-import uuid
+from models.engine.file_storage import FileStorage
+from models import storage
+from uuid import uuid4
 
 
 class BaseModel():
@@ -22,21 +26,20 @@ class BaseModel():
         updated_at (datetime): Date&Time when an instance is last modified.
         """
 
-        self.id = str(uuid.uuid4())
+        self.id = str(uuid4())
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
-        if kwargs is not None:
-            for k in kwargs.keys():
+        if kwargs:
+            for k, v in kwargs.items():
                 if k == "__class__":
                     continue
-                elif k == "created_at":
-                    self.created_at = datetime.strptime(
-                        kwargs[k], "%Y-%m-%dT%H:%M:%S.%f")
-                elif k == "updated_at":
-                    self.updated_at = datetime.strptime(
-                        kwargs[k], "%Y-%m-%dT%H:%M:%S.%f")
+                elif k == "updated_at" or k == "created_at":
+                    self.__dict__[k] = datetime.strptime(
+                        v, "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[k] = kwargs[k]
+        else:
+            storage.new(self)
 
     def __str__(self):
         """
@@ -51,6 +54,7 @@ class BaseModel():
         with the current datetime.
         """
         self.updated_at = datetime.today()
+        storage.save()
 
     def to_dict(self):
         """
