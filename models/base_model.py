@@ -14,8 +14,8 @@ class BaseModel:
         """Initialize a new BaseModel.
         """
         tform = "%Y-%m-%dT%H:%M:%S.%f"
-        self.id = str(uuid4())
         self.created_at = datetime.today()
+        self.id = str(uuid4())
         self.updated_at = datetime.today()
         if len(kwargs) != 0:
             for k, v in kwargs.items():
@@ -42,7 +42,7 @@ class BaseModel:
         return rdict
 
     def __str__(self):
-        """Return the print representation of the BaseModel instance.
+        """Returns the print representation of the BaseModel instance.
         """
         clname = self.__class__.__name__
         return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
