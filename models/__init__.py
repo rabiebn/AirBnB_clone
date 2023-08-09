@@ -3,7 +3,7 @@
 Initialization script for the models directory.
 """
 
-from engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 
 # Create an instance of FileStorage
 storage = FileStorage()
