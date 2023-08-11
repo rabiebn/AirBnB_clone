@@ -35,14 +35,13 @@ class BaseModel:
     def to_dict(self):
         """Return the dictionary of the BaseModel instance.
         """
-        rdict = self.__dict__.copy()
-        rdict["created_at"] = self.created_at.isoformat()
-        rdict["updated_at"] = self.updated_at.isoformat()
-        rdict["__class__"] = self.__class__.__name__
-        return rdict
+        return_dict = self.__dict__.copy()
+        return_dict["created_at"] = self.created_at.isoformat()
+        return_dict["updated_at"] = self.updated_at.isoformat()
+        return_dict["__class__"] = self.__class__.__name__
+        return return_dict
 
     def __str__(self):
         """Returns the print representation of the BaseModel instance.
         """
-        clname = self.__class__.__name__
-        return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)

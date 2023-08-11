@@ -63,28 +63,28 @@ class Test_review_instantiation(unittest.TestCase):
         self.assertLess(rv1.updated_at, rv2.updated_at)
 
     def test_str_representation(self):
-        dt = datetime.today()
-        dt_repr = repr(dt)
+        d_t = datetime.today()
+        d_t_repr = repr(d_t)
         rv = Review()
         rv.id = "123456"
-        rv.created_at = rv.updated_at = dt
+        rv.created_at = rv.updated_at = d_t
         rvstr = rv.__str__()
         self.assertIn("[Review] (123456)", rvstr)
         self.assertIn("'id': '123456'", rvstr)
-        self.assertIn("'created_at': " + dt_repr, rvstr)
-        self.assertIn("'updated_at': " + dt_repr, rvstr)
+        self.assertIn("'created_at': " + d_t_repr, rvstr)
+        self.assertIn("'updated_at': " + d_t_repr, rvstr)
 
     def test_args_unused(self):
         rv = Review(None)
         self.assertNotIn(None, rv.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        dt = datetime.today()
-        dt_iso = dt.isoformat()
-        rv = Review(id="345", created_at=dt_iso, updated_at=dt_iso)
+        d_t = datetime.today()
+        d_t_iso = d_t.isoformat()
+        rv = Review(id="345", created_at=d_t_iso, updated_at=d_t_iso)
         self.assertEqual(rv.id, "345")
-        self.assertEqual(rv.created_at, dt)
-        self.assertEqual(rv.updated_at, dt)
+        self.assertEqual(rv.created_at, d_t)
+        self.assertEqual(rv.updated_at, d_t)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -163,17 +163,17 @@ class Test_review_to_dict(unittest.TestCase):
         self.assertEqual(str, type(rv_dict["updated_at"]))
 
     def test_to_dict_output(self):
-        dt = datetime.today()
+        d_t = datetime.today()
         rv = Review()
         rv.id = "123456"
-        rv.created_at = rv.updated_at = dt
-        tdict = {
+        rv.created_at = rv.updated_at = d_t
+        t_dict = {
             'id': '123456',
             '__class__': 'Review',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
+            'created_at': d_t.isoformat(),
+            'updated_at': d_t.isoformat(),
         }
-        self.assertDictEqual(rv.to_dict(), tdict)
+        self.assertDictEqual(rv.to_dict(), t_dict)
 
     def test_contrast_to_dict_dunder_dict(self):
         rv = Review()

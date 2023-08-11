@@ -51,28 +51,28 @@ class Test_State_instantiation(unittest.TestCase):
         self.assertLess(st1.updated_at, st2.updated_at)
 
     def test_str_representation(self):
-        dt = datetime.today()
-        dt_repr = repr(dt)
+        d_t = datetime.today()
+        d_t_repr = repr(d_t)
         st = State()
         st.id = "123456"
-        st.created_at = st.updated_at = dt
+        st.created_at = st.updated_at = d_t
         ststr = st.__str__()
         self.assertIn("[State] (123456)", ststr)
         self.assertIn("'id': '123456'", ststr)
-        self.assertIn("'created_at': " + dt_repr, ststr)
-        self.assertIn("'updated_at': " + dt_repr, ststr)
+        self.assertIn("'created_at': " + d_t_repr, ststr)
+        self.assertIn("'updated_at': " + d_t_repr, ststr)
 
     def test_args_unused(self):
         st = State(None)
         self.assertNotIn(None, st.__dict__.values())
 
     def test_instantiation_with_kwargs(self):
-        dt = datetime.today()
-        dt_iso = dt.isoformat()
-        st = State(id="345", created_at=dt_iso, updated_at=dt_iso)
+        d_t = datetime.today()
+        d_t_iso = d_t.isoformat()
+        st = State(id="345", created_at=d_t_iso, updated_at=d_t_iso)
         self.assertEqual(st.id, "345")
-        self.assertEqual(st.created_at, dt)
-        self.assertEqual(st.updated_at, dt)
+        self.assertEqual(st.created_at, d_t)
+        self.assertEqual(st.updated_at, d_t)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -151,17 +151,17 @@ class Test_State_to_dict(unittest.TestCase):
         self.assertEqual(str, type(st_dict["updated_at"]))
 
     def test_to_dict_output(self):
-        dt = datetime.today()
+        d_t = datetime.today()
         st = State()
         st.id = "123456"
-        st.created_at = st.updated_at = dt
-        tdict = {
+        st.created_at = st.updated_at = d_t
+        t_dict = {
             'id': '123456',
             '__class__': 'State',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
+            'created_at': d_t.isoformat(),
+            'updated_at': d_t.isoformat(),
         }
-        self.assertDictEqual(st.to_dict(), tdict)
+        self.assertDictEqual(st.to_dict(), t_dict)
 
     def test_contrast_to_dict_dunder_dict(self):
         st = State()

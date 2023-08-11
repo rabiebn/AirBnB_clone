@@ -51,16 +51,16 @@ class Test_amenity_instantiation(unittest.TestCase):
         self.assertLess(am1.updated_at, am2.updated_at)
 
     def test_str_representation(self):
-        dt = datetime.today()
-        dt_repr = repr(dt)
+        d_t = datetime.today()
+        d_t_repr = repr(d_t)
         am = Amenity()
         am.id = "123456"
-        am.created_at = am.updated_at = dt
+        am.created_at = am.updated_at = d_t
         amstr = am.__str__()
         self.assertIn("[Amenity] (123456)", amstr)
         self.assertIn("'id': '123456'", amstr)
-        self.assertIn("'created_at': " + dt_repr, amstr)
-        self.assertIn("'updated_at': " + dt_repr, amstr)
+        self.assertIn("'created_at': " + d_t_repr, amstr)
+        self.assertIn("'updated_at': " + d_t_repr, amstr)
 
     def test_args_unused(self):
         am = Amenity(None)
@@ -68,12 +68,12 @@ class Test_amenity_instantiation(unittest.TestCase):
 
     def test_instantiation_with_kwargs(self):
         """instantiation with kwargs test method"""
-        dt = datetime.today()
-        dt_iso = dt.isoformat()
-        am = Amenity(id="345", created_at=dt_iso, updated_at=dt_iso)
+        d_t = datetime.today()
+        d_t_iso = d_t.isoformat()
+        am = Amenity(id="345", created_at=d_t_iso, updated_at=d_t_iso)
         self.assertEqual(am.id, "345")
-        self.assertEqual(am.created_at, dt)
-        self.assertEqual(am.updated_at, dt)
+        self.assertEqual(am.created_at, d_t)
+        self.assertEqual(am.updated_at, d_t)
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -152,17 +152,17 @@ class Test_Amenity_to_dict(unittest.TestCase):
         self.assertEqual(str, type(am_dict["updated_at"]))
 
     def test_to_dict_output(self):
-        dt = datetime.today()
+        d_t = datetime.today()
         am = Amenity()
         am.id = "123456"
-        am.created_at = am.updated_at = dt
-        tdict = {
+        am.created_at = am.updated_at = d_t
+        t_dict = {
             'id': '123456',
             '__class__': 'Amenity',
-            'created_at': dt.isoformat(),
-            'updated_at': dt.isoformat(),
+            'created_at': d_t.isoformat(),
+            'updated_at': d_t.isoformat(),
         }
-        self.assertDictEqual(am.to_dict(), tdict)
+        self.assertDictEqual(am.to_dict(), t_dict)
 
     def test_contrast_to_dict_dunder_dict(self):
         am = Amenity()
