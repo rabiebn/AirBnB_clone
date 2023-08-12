@@ -13,6 +13,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models.engine.file_storage import FileStorage
 
+
 def parse(arg):
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
@@ -29,6 +30,7 @@ def parse(arg):
         retl = [i.strip(",") for i in lexer]
         retl.append(curly_braces.group())
         return retl
+
 
 class HBNBCommand(cmd.Cmd):
     """Defines the command interpreter.
@@ -121,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
             FileStorage().save()
 
     def do_all(self, arg):
-        """Displays string representations of all instances of a given class."""
+        """Displays string representations of all instances of a class."""
         arguments = parse(arg)
         if len(arguments) > 0 and arguments[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -187,6 +189,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         FileStorage().save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

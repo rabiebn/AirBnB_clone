@@ -57,7 +57,7 @@ class Test_HBNB_Command_help(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_all(self):
-        h = ("Displays string representations of all instances of a given class.")
+        h = ("Displays string representations of all instances of a class.")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help all"))
             self.assertEqual(h, output.getvalue().strip())
@@ -81,6 +81,7 @@ class Test_HBNB_Command_help(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertEqual(h, output.getvalue().strip())
+
 
 class Test_HBNB_Command_exit(unittest.TestCase):
     """Unittests for testing exiting from the command interpreter."""
