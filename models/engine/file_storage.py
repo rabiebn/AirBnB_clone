@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """
 file_storage Module has:
-    FileStorage Class;
-    
+    FileStorage Class.
 """
 import models
 import json
@@ -12,11 +11,11 @@ class FileStorage():
     """
     FileStorage class,  serializes instances to a JSON file
     and deserializes JSON file to instances.
-    
+
     Private class attributes:
         __file_path (str) : path to the JSON file;
         __objects (dict)  : store all objects by <class name>.id.
-    
+
     Public instance methods:
         __init__(self, *args, **kwargs)
         all(self)
@@ -24,7 +23,7 @@ class FileStorage():
         save(self)
         reload(self)
     """
-    __file_path = 'file.json' # Might change this Later
+    __file_path = 'file.json'  # Might change this Later
     __objects = dict()
 
     def all(self):
@@ -38,7 +37,7 @@ class FileStorage():
         Sets in __objects the obj with key <obj class name>.id.
         """
         key = obj.__class__.__name__ + '.' + obj.id
-        self.__objects[key] = obj.to_dict()
+        self.__objects[key] = obj.to_dict()  # to_dict() ??
 
     def save(self):
         """
