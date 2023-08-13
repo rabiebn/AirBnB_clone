@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """
-file_storage Module has:
+file_storage Module defines:
     FileStorage Class.
 """
-import models
+from models.base_model import BaseModel
+from models.user import User
 import json
 
 
@@ -23,7 +24,7 @@ class FileStorage():
         save(self)
         reload(self)
     """
-    __file_path = 'file.json'  # Might change this Later
+    __file_path = 'file.json'
     __objects = dict()
 
     def all(self):
@@ -36,15 +37,19 @@ class FileStorage():
         """
         Sets in __objects the obj with key <obj class name>.id.
         """
-        key = obj.__class__.__name__ + '.' + obj.id
-        self.__objects[key] = obj.to_dict()  # to_dict() ??
+        if obj:
+            key = "{}.{}".format(obj.__class__.__name__, obj.id)
+            self.__objects[key] = obj
 
     def save(self):
         """
         Serializes __objects to the JSON file (path: __file_path).
         """
+        objs_dict = dict()
+        for k, obj in self.__objects.items():
+            objs_dict[k] = obj.to_dict()
         with open(self.__file_path, 'w') as f:
-            json.dump(self.__objects, f, indent=4)
+            json.dump(objs_dict, f)
 
     def reload(self):
         """
@@ -52,6 +57,10 @@ class FileStorage():
         """
         try:
             with open(self.__file_path, 'r') as f:
-                self.__objects = json.load(f)
+                obj_dict = json.load(f)
+                for o in obj_dict.values():
+                        cls_name = o["__class__"]
+                        del o["__class__"]
+                        self.new(eval(cls_name)(**o))
         except FileNotFoundError:
             pass

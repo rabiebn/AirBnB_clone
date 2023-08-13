@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 """
-base_module Module has:
-    BaseModel Class;
-
+base_module Module defines:
+    BaseModel Class.
 """
 
 from datetime import datetime
-from models.engine.file_storage import FileStorage
 from models import storage
 from uuid import uuid4
 
