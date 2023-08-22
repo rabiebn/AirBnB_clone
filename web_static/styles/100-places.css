@@ -1,0 +1,107 @@
+/* Places */
+.places {
+    text-align: center;
+}
+.places h1{
+    text-align: left;
+    font-size: 30px;
+}
+.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+    display: inline-block;
+    min-height: 250px;
+    vertical-align: top;
+}
+.places article h2 {
+    font-size: 30px;
+    margin-top: 5px;
+}
+/* Inside each place box */
+div.price_by_night {
+    color: #FF5A5F;
+    border: 4px solid #FF5A5F;
+    border-radius: 100%;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    position: relative;
+    float: right;
+    top: -80px;
+}
+div.information {
+    height: 80px;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+}
+div.max_guest,
+div.number_rooms,
+div.number_bathrooms {
+  line-height: 140px;
+  width: 100px;
+  height: 100%;
+  display: inline-block;
+  background-position: 50% 5px;
+  background-repeat: no-repeat;
+}
+.max_guest {
+  background-image: url("../images/icon_group.png")
+}
+.number_rooms {
+  background-image: url("../images/icon_bed.png");
+}
+.number_bathrooms {
+  background-image: url("../images/icon_bath.png");
+}
+div.user,
+div.description {
+  text-align: left;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+/* Amenities & Reviews*/
+.places div.amenities,
+.places div.reviews {
+  margin-top: 40px;
+}
+.places div.amenities h2,
+.places div.reviews h2 {
+  font-size: 16px;
+  border-bottom: 1px solid #DDDDDD;
+  padding-top: 30px;
+  text-align: left;
+  padding-bottom: 10px;
+}
+.places div.amenities ul {
+  padding: 0px;
+  margin-top: -10px;
+}
+.places div.amenities li {
+  display: inline-block;
+  padding: 0.5px;
+}
+.places div.amenities ul #pet {
+  background-image: url("../images/icon_pets.png") 20px left no-repeat;
+}
+.places div.amenities ul #tv {
+  background-image: url("../images/icon_tv.png") 20px left no-repeat;
+}
+.places div.amenities ul #wifi {
+  background-image: url("../images/icon_wifi.png") 20px left no-repeat;
+}
+.places div.amenities #pet,
+.places div.amenities #tv,
+.places div.amenities #wifi {
+/*width and height??*/
+  background-size: 30px;
+  display: inline-block;
+  background-position: left;
+}
+.places div.reviews ul li h3 p {
+  font-size: 12px;
+  margin-top: 0;
+}
